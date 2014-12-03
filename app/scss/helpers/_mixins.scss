@@ -1,0 +1,235 @@
+// Breakpoints
+
+@mixin bp($point) {
+
+  @if $point == sm {
+    @media #{$bp-sm} { @content; }
+  }
+  @else if $point == md {
+    @media #{$bp-md} { @content; }
+  }
+  @else if $point == lg {
+    @media #{$bp-lg}  { @content; }
+  }
+  @else if $point == 4col {
+    @media #{$bp-4col}  { @content; }
+  }
+  @else if $point == vsm {
+    @media #{$bp-vsm}  { @content; }
+  }
+  @else if $point == custom1 {
+    @media #{$bp-custom1}  { @content; }
+  }
+}
+
+// Mixin for CSS Keyframe Animations
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+// Mixin for Font-face:
+// @include font-face('Ashbury', 'AshburyLig-webfont', 'Ashbury', 'serif');
+
+@mixin font-face($style-name, $file, $family, $weight, $category:"") {
+    $filepath: "../fonts/" + $family + "/" + $file;
+    @font-face {
+        font-family: "#{$style-name}";
+        src: url($filepath + ".eot");
+        src: url($filepath + ".eot?#iefix") format('embedded-opentype'), url($filepath + ".woff") format('woff'), url($filepath + ".ttf")  format('truetype'), url($filepath + ".svg#" + $style-name + "") format('svg');
+        font-weight: $weight;
+    }
+    %#{$style-name} {
+        font: {
+            @if $category != "" {
+                family: "#{$style-name}", #{$category};
+            }
+            @else {
+                family: "#{$style-name}";
+                weight: normal;
+            }
+        }
+    }
+}
+
+// Box-sizing
+// *, *:after, *:before { @include box-sizing(border-box);}
+
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+     -moz-box-sizing: $box-model; // Firefox <= 19
+          box-sizing: $box-model;
+}
+
+// Border-radius
+// button {  @include border-radius(5px); }
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	border-radius: $radius;
+	background-clip: padding-box;  /* stops bg color from leaking outside the border: */
+}
+
+// Single side border-radius
+
+@mixin border-top-radius($radius) {
+  -webkit-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+  -webkit-border-top-left-radius: $radius;
+  border-top-left-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-right-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+  -webkit-border-top-right-radius: $radius;
+  border-top-right-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-bottom-radius($radius) {
+  -webkit-border-bottom-right-radius: $radius;
+  border-bottom-right-radius: $radius;
+  -webkit-border-bottom-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin border-left-radius($radius) {
+  -webkit-border-bottom-left-radius: $radius;
+  border-bottom-left-radius: $radius;
+  -webkit-border-top-left-radius: $radius;
+  border-top-left-radius: $radius;
+  background-clip: padding-box;
+}
+
+// Opacity
+// button {  @include opacity(0.8); }
+
+@mixin opacity($opacity) {
+	opacity: $opacity;
+	$opacity-ie: $opacity * 100;
+	filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+// Font-size
+// button { @include font-size(13, 11) }
+
+@mixin font-size($sizeValue: 1.6, $line: $sizeValue * 1.5){
+	font-size: ($sizeValue * 1) + px;
+	line-height: ($line * 1) + px;
+	font-size: ($sizeValue / 10) + rem;
+	line-height: ($line / 10) + rem;
+}
+
+// Box shadow
+// button { @include box-shadow(0, 1px, 1px, rgba(0, 0, 0, 0.075), inset) };
+
+@mixin box-shadow($top, $left, $blur, $color, $inset:""){
+	-webkit-box-shadow:$top $left $blur $color #{$inset};
+	-moz-box-shadow:$top $left $blur $color #{$inset};
+	box-shadow:$top $left $blur $color #{$inset};
+}
+
+// Linear gradient
+// { @include linear-gradient(#1e5799, #2989d8); }
+// { @include linear-gradient(to top, #8fdce5, #3dc3d1); }
+// { @include linear-gradient(to top, #8fdce5, #3dc3d1, $fallback: red); }
+// { @include linear-gradient(50deg, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); }
+//
+// Info: http://bourbon.io/docs/#linear-gradient
+
+@mixin linear-gradient($pos, $G1, $G2: null,
+                       $G3: null, $G4: null,
+                       $G5: null, $G6: null,
+                       $G7: null, $G8: null,
+                       $G9: null, $G10: null,
+                       $fallback: null) {
+  // Detect what type of value exists in $pos
+  $pos-type: type-of(nth($pos, 1));
+  $pos-spec: null;
+  $pos-degree: null;
+
+  // If $pos is missing from mixin, reassign vars and add default position
+  @if ($pos-type == color) or (nth($pos, 1) == "transparent")  {
+    $G10: $G9; $G9: $G8; $G8: $G7; $G7: $G6; $G6: $G5;
+     $G5: $G4; $G4: $G3; $G3: $G2; $G2: $G1; $G1: $pos;
+     $pos: null;
+  }
+
+  @if $pos {
+    $positions: _linear-positions-parser($pos);
+    $pos-degree: nth($positions, 1);
+    $pos-spec:   nth($positions, 2);
+  }
+
+  $full: $G1, $G2, $G3, $G4, $G5, $G6, $G7, $G8, $G9, $G10;
+
+  // Set $G1 as the default fallback color
+  $fallback-color: nth($G1, 1);
+
+  // If $fallback is a color use that color as the fallback color
+  @if (type-of($fallback) == color) or ($fallback == "transparent") {
+    $fallback-color: $fallback;
+  }
+
+  background-color: $fallback-color;
+  background-image: -webkit-linear-gradient($pos-degree $full); // Safari 5.1+, Chrome
+  background-image: unquote("linear-gradient(#{$pos-spec}#{$full})");
+}
+
+// generic transform
+@mixin transform($transforms) {
+	   -moz-transform: $transforms;
+	     -o-transform: $transforms;
+	    -ms-transform: $transforms;
+	-webkit-transform: $transforms;
+          transform: $transforms;
+}
+// rotate
+@mixin rotate ($deg) {
+  @include transform(rotate(#{$deg}deg));
+}
+
+// scale
+@mixin scale($scale) {
+	 @include transform(scale($scale));
+}
+// translate
+@mixin translate ($x, $y) {
+   @include transform(translate($x, $y));
+}
+// skew
+@mixin skew ($x, $y) {
+   @include transform(skew(#{$x}deg, #{$y}deg));
+}
+//transform origin
+@mixin transform-origin ($origin) {
+    moz-transform-origin: $origin;
+	     -o-transform-origin: $origin;
+	    -ms-transform-origin: $origin;
+	-webkit-transform-origin: $origin;
+          transform-origin: $origin;
+}
+
+// Transition
+// @include transition(all, 0.2s, ease-in-out)
+@mixin transition ($property, $duration, $timingFunction) {
+  -webkit-transition: $property $duration $timingFunction;
+  -moz-transition: $property $duration $timingFunction;
+  -ms-transition: $property $duration $timingFunction;
+  -o-transition: $property $duration $timingFunction;
+  transition: $property $duration $timingFunction;
+}

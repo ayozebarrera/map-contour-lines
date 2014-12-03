@@ -1,0 +1,40 @@
+// Media queries
+
+$bp-sm: "only screen and (min-width : 768px)";
+$bp-md: "only screen and (min-width : 992px)";
+$bp-lg: "only screen and (min-width : 1200px)";
+
+$bp-vsm: "only screen and (min-width : 0px) and (max-width : 369px)";
+// custom bp for items grid
+$bp-custom1: "only screen and (min-width : 525px)";
+
+// font family variables:
+
+$font-roboto: "Roboto", sans-serif;
+$font-awesome: FontAwesome;
+
+// first we set descriptive variables:
+
+$headergreen: #3498db; // header, items title
+$backgroundgreen: #ecf0f1; // body
+$boxesgreen: #5495A4; // boxes background
+$iconsgreen: #2980b9; // icons
+$overlay: #E4F0F5; // overlay, text color
+
+// items colors
+$pink: #E86390;
+$royalblue: #0075B6;
+$lightblue: #71C6D8;
+$green: #8BBC4C;
+$yellow: #F7B00C;
+
+// categories colors
+$cat1: #F19518;
+$cat2: #199C2E;
+$cat3: #08B4CC;
+$cat5: #863C8B;
+
+$cat1text: #EA6B11;
+$cat2text: #199C2E;
+$cat3text: #3096CF;
+$cat5text: #863C8B;

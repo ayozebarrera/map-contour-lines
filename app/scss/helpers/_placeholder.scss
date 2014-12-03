@@ -1,0 +1,38 @@
+// Center-block
+// button {  width: 450px;  @extend %center-block; }
+
+%center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Text overflow
+// p { @extend %text-overflow; }
+
+%text-overflow {
+  text-overflow: ellipsis;
+  vertical-align: top;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+}
+
+// Clearfix
+// p { @extend %clearfix; }
+
+%clearfix {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+%iconed{
+	font-family: $font-awesome;
+	font-size: 18px;
+}

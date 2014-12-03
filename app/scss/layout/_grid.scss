@@ -1,0 +1,5 @@
+.container{
+	@include bp(md) {
+		width: 960px;
+	}
+}

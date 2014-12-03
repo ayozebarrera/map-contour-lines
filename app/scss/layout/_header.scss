@@ -1,0 +1,147 @@
+header {
+	@include font-size(16, 19);
+	@include box-shadow(0, 4px, 7px, rgba(0, 0, 0, 0.075));
+	background: $headergreen;
+	.dropdown-menu{
+		padding-top: 10px;
+		padding-bottom: 6px;
+		a {
+			padding-left: 12px;
+		}
+	}
+	li .buttons{
+		color:#000 !important;
+		padding: 15px 20px !important;
+	}
+	ul.nav .buttons:last-child{
+		margin-right: none !important;
+		margin-left: 40px;
+	}
+	.container{
+		width: 100%;
+		padding: 0 10px !important;
+	}
+	.shadow{
+		bottom: -7px;
+		left: 0;
+		right: 0;
+		height: 6px;
+		box-shadow: inset 0px 5px 6px -3px rgba(0, 0, 0, 0.4);
+		position: absolute;
+	}
+	i.custom{
+		@include font-size(18, 18);
+	}
+	.navbar-header{
+		float: none;
+		margin-right: 0px !important;
+		margin-left: 0px !important;
+	}
+	.navbar-center{
+		text-align: center;
+		position: relative;
+		top: 14px;
+		width: 165px;
+		margin: 0 auto;
+		img{
+			width: 100%;
+		}
+	}
+}
+.controllers-left{
+	padding-top: 14px;
+	width: 300px;
+	margin-left: 95px;
+	div{
+		display: inline-block;
+		font-weight: bold;
+		margin-right: 20px;
+		span.greenIcon{
+			color:$iconsgreen;
+		}
+		&:last-child{
+			margin-right: 0px;
+		}
+	}
+}
+#logo-small {
+	float: none;
+	display: inline-block;
+	padding: 15px 0;
+	@include bp(sm) {
+		float: left;
+		padding: 15px 0 8px 0;
+	}
+	a{
+		@include bp(sm) {
+			text-align: center;
+		}
+	}
+}
+.logo{
+	width: 289px;
+}
+.logo-small{
+	width: 100%;
+	position: relative;
+	top:-4px;
+	display: block;
+	@include bp(vsm){
+		top:-2px;
+	}
+}
+.options-left{
+	float: left;
+}
+.options-right{
+	display: inherit;
+	float: right;
+	position: relative;
+	margin: 11px 0px 10px 0;
+	padding: 4px 8px;
+	.edit-profile-btn {
+		display: none;
+	}
+	.mobile {
+		//width: 21px;
+		text-align: center;
+		a{
+			display: block;
+			width: 37px;
+		}
+		#social{
+			position: relative;
+			&:focus {
+				color: inherit;
+			}
+		}
+		.dropdown-menu {
+			min-width: 0;
+			left: auto;
+			right: 0;
+			a {
+				width: 100%;
+				display: block;
+				padding: 6px;
+			}
+		}
+		a:active, a:focus {
+			outline: 0;
+		}
+	}
+}
+
+.btn-left{
+	float: left;
+	display: inherit;
+	position: relative;
+	margin: 11px 5px 10px 0px;
+	padding: 4px 10px;
+}
+
+.logo{
+	width: 300px;
+	img{
+		width: 100%;
+	}
+}
